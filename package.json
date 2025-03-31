@@ -1,0 +1,31 @@
+{
+  "name": "ai-shell",
+  "version": "1.0.0",
+  "description": "A CLI tool to chat with different AI models.",
+  "main": "cli.js",
+  "bin": {
+    "ais": "./cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ai",
+    "cli",
+    "openai",
+    "claude",
+    "google",
+    "gemini"
+  ],
+  "author": "John Carmichael",
+  "license": "MIT",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "chalk": "^5.4.1",
+    "commander": "^13.1.0",
+    "conf": "^13.1.0",
+    "inquirer": "^12.5.0",
+    "openai": "^4.90.0"
+  },
+  "type": "module"
+}
