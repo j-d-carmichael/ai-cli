@@ -1,6 +1,6 @@
 {
   "name": "ai-shell",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A CLI tool to chat with different AI models.",
   "main": "cli.js",
   "bin": {
