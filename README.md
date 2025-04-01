@@ -14,7 +14,6 @@ Engage in interactive chat sessions or get quick answers to single prompts witho
 Requires Node.js (v18 or later recommended).
 
 Install the package globally using npm:
-
 ```bash
 npm install -g ai-shell
 ```
@@ -46,18 +45,21 @@ The AI's response will be streamed directly to your terminal leaving you to cont
 
 ### 3. End a chat
 
-To end the chat just press control + c
+To end the chat just press "control + c"
 
-### 4. Listing Current Configuration
-To see which service and model are currently configured, run:
+### 4. Listing Services & Current Configuration
+To see which service and model are currently configured.
+This will display the active service provider and model identifier. It will not display your API key.
+```bash
+ais config
+```
 
+To see the available models you can currently talk to:
 ```bash
 ais list
 # or the alias:
 ais ls
 ```
-
-This will display the active service provider and model identifier. It will not display your API key.
 
 ### 5. Getting Help
 

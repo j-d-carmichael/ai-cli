@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.1.1
+Docs
+
 ## 1.1.0
 Run `--help` to see all options
 Google gemini added, run `ls` to see models and `set` to use
