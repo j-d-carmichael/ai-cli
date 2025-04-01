@@ -25,6 +25,10 @@
   "bin": {
     "ais": "./cli.js"
   },
+  "scripts": {
+    "doctoc":"npx doctoc ./README.md",
+    "prepublishOnly": "npm run doctoc"
+  },
   "dependencies": {
     "@google/genai": "^0.7.0",
     "@anthropic-ai/sdk": "^0.39.0",

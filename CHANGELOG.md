@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.2.1 
+Docs, specifically table of contents added to the [README.md](./README.md)
+
 ## 1.2.0
 - Persist keys when jumping between models, this speeds up the ability to test different models
 - When `set` is called but not previously user (ie no api key found) it will ask

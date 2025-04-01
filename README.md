@@ -1,15 +1,32 @@
 # AI-Shell (ais)
 
+![Screenshot](docs/screenshot.png)
+
 [![npm version](https://badge.fury.io/js/ai-shell.svg)](https://badge.fury.io/js/ai-shell)
 [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
 <!-- [![Downloads](https://img.shields.io/npm/dm/ai-shell.svg)](https://www.npmjs.com/package/ai-shell) -->
 <!-- Optional: Add downloads badge after publishing -->
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Installation](#installation)
+- [Usage](#usage)
+  - [1. Configuration (First Time or Updating)](#1-configuration-first-time-or-updating)
+  - [2. Asking a Single Question](#2-asking-a-single-question)
+  - [3. End a chat](#3-end-a-chat)
+  - [4. Listing Services & Current Configuration](#4-listing-services--current-configuration)
+  - [5. Getting Help](#5-getting-help)
+- [Configuration Storage](#configuration-storage)
+- [Contributing](#contributing)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+
 A command-line interface (CLI) tool to interact seamlessly with various AI services like Google (Gemini), OpenAI (GPT) and Anthropic (Claude) directly from your terminal.
 
 For those who feel cursor or co-pilot etc is not for them but loading a whole web-gui is too slow... fire up a terminal in your ide, or wherever, and get right to it.
-
-![Screenshot](docs/screenshot.png)
 
 Engage in interactive chat sessions or get quick answers to single prompts without leaving your command line. `ai-shell` securely stores your preferences and API keys locally.
 
@@ -68,7 +85,7 @@ ais list
 ais ls
 ```
 
-### 5. Getting Help
+### 5. Getting Help & Listing All Commands
 
 For a list of all available commands and options:
 

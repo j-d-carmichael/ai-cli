@@ -5,21 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1fb704c4-7b35-4690-aa91-a707b6de307a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/availableResources.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/clearConfig.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/getConfiguration.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/handleConfigurationShow.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/handleListConfiguration.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/handleSetConfiguration.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/runChat.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cli.js" beforeDir="false" afterPath="$PROJECT_DIR$/cli.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/streamAnthropicResponse.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/streamAnthropicResponse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/streamGoogleResponse.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/streamGoogleResponse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/streamOpenAIResponse.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/streamOpenAIResponse.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
