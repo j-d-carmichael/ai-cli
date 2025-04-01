@@ -9,6 +9,7 @@ import { runChat } from './lib/runChat.js';
 
 import Conf from 'conf';
 import { clearConfig } from './lib/clearConfig.js';
+import { handleSetSystemPrompt } from './lib/handleSetSystemPrompt.js';
 const config = new Conf({ projectName: 'ais-cli' });
 
 // --- Commander Setup & Command Definitions ---
@@ -25,7 +26,14 @@ program
   .action(() => handleSetConfiguration(config, true));
 
 program
+  .command('set-system-prompt')
+  .alias('sp')
+  .description('Set or update the system prompt for AI interactions')
+  .action(() => handleSetSystemPrompt(config));
+
+program
   .command('config')
+  .alias('c')
   .description('List the current AI configuration (service and model)')
   .action(() => handleConfigurationShow(config));
 

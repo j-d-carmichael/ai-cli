@@ -14,6 +14,7 @@
 - [Installation](#installation)
 - [Usage](#usage)
   - [1. Configuration (First Time or Updating)](#1-configuration-first-time-or-updating)
+    - [Setting a system prompt](#setting-a-system-prompt)
   - [2. Asking a Single Question](#2-asking-a-single-question)
   - [3. End a chat](#3-end-a-chat)
   - [4. Listing Services & Current Configuration](#4-listing-services--current-configuration)
@@ -27,6 +28,8 @@
 A command-line interface (CLI) tool to interact seamlessly with various AI services like Google (Gemini), OpenAI (GPT) and Anthropic (Claude) directly from your terminal.
 
 For those who feel cursor or co-pilot etc is not for them but loading a whole web-gui is too slow... fire up a terminal in your ide, or wherever, and get right to it.
+
+The AI then becomes more like your teacher opposed to cursor or co-pilot being the coder... 
 
 Engage in interactive chat sessions or get quick answers to single prompts without leaving your command line. `ai-shell` securely stores your preferences and API keys locally.
 
@@ -58,6 +61,24 @@ Your configuration is saved locally for future use.
 - You can run ais set again anytime to change your settings.
 - API keys (service keys) are stored in the local config, when jumping between models this speeds up the process by removing the need to copy and paste in the api key more than once.
 - When `set` is called and a service picked, but not previously used (ie no api key found), it will ask for an API key and add to the dict of keys
+
+#### Setting a system prompt
+A default system prompt is set as:
+
+_"You should be concise and as accurate as possible in your output. As few a niceties as possible. This is a
+developer you are talking to, they want rapid fast answers and on point. If needed, ask the user to make their
+question more accurate and less obtuse to enable you to provide a very on point answer."_
+
+You can override this by calling the set system prompt command:
+```bash
+ais set-system-prompt
+
+# or for short
+ais sp
+```
+
+This will replace the current system prompt with your input.
+
 
 ### 2. Asking a Single Question
 Pass your prompt directly as arguments after the ais command:

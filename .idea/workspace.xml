@@ -5,7 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1fb704c4-7b35-4690-aa91-a707b6de307a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/lib/handleSetSystemPrompt.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cli.js" beforeDir="false" afterPath="$PROJECT_DIR$/cli.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/getConfiguration.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/getConfiguration.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/handleConfigurationShow.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/handleConfigurationShow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/runChat.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/runChat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/streamAnthropicResponse.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/streamAnthropicResponse.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/streamGoogleResponse.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/streamGoogleResponse.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/streamOpenAIResponse.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/streamOpenAIResponse.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,7 +55,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/mnt/linuxdrive/code/liffery/backend/ms_ai",
+    "last_opened_file_path": "/mnt/linuxdrive/code/opensource/ai-shell",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
