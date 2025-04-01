@@ -34,10 +34,13 @@ ais set
 
 This interactive command will guide you through:
 - Selecting an AI service provider (OpenAI or Anthropic).
-- Choosing a specific model available for that service (e.g., gpt-4o-mini, claude-3-5-sonnet-20240620).
+- Choosing a specific model available for that service (e.g., gpt-4o-mini, claude-3-5-sonnet).
 - Entering your API key for the selected service (input will be masked).
 
-Your configuration is saved locally for future use. You can run ais set again anytime to change your settings.
+Your configuration is saved locally for future use. 
+- You can run ais set again anytime to change your settings.
+- API keys (service keys) are stored in the local config, when jumping between models this speeds up the process by removing the need to copy and paste in the api key more than once.
+- When `set` is called and a service picked, but not previously used (ie no api key found), it will ask for an API key and add to the dict of keys
 
 ### 2. Asking a Single Question
 Pass your prompt directly as arguments after the ais command:

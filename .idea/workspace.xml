@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1fb704c4-7b35-4690-aa91-a707b6de307a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/lib/availableResources.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/clearConfig.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/getConfiguration.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/handleConfigurationShow.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/handleListConfiguration.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/handleSetConfiguration.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/runChat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cli.js" beforeDir="false" afterPath="$PROJECT_DIR$/cli.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/streamAnthropicResponse.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/streamAnthropicResponse.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/streamGoogleResponse.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/streamGoogleResponse.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/streamOpenAIResponse.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/streamOpenAIResponse.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;j-d-carmichael&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:j-d-carmichael/ai-cli.git&quot;,
+    &quot;accountId&quot;: &quot;79cea07c-18b2-41d8-9506-e1181fdf9c09&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2v8V32bjLcqwZAnVCORW6nH0fhf" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/mnt/linuxdrive/code/liffery/backend/ms_ai",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "/home/carmichael/.local/share/JetBrains/Toolbox/apps/phpstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-PS-243.22562.233" />
+        <option value="bundled-php-predefined-a98d8de5180a-7980c7aaca61-com.jetbrains.php.sharedIndexes-PS-243.22562.233" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
