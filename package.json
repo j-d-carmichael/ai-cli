@@ -1,11 +1,8 @@
 {
-  "name": "ai-shell",
   "version": "1.1.2",
+  "type": "module",
+  "name": "ai-shell",
   "description": "A CLI tool to chat with different AI models from anthropic, google and openai.",
-  "main": "cli.js",
-  "bin": {
-    "ais": "./cli.js"
-  },
   "keywords": [
     "ai",
     "cli",
@@ -16,7 +13,6 @@
   ],
   "author": "John Carmichael",
   "license": "MIT",
-  "type": "module",
   "homepage": "https://github.com/j-d-carmichael/ai-shell#readme",
   "bugs": {
     "url": "https://github.com/j-d-carmichael/ai-shell/issues"
@@ -24,6 +20,10 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/j-d-carmichael/ai-shell.git"
+  },
+  "main": "cli.js",
+  "bin": {
+    "ais": "./cli.js"
   },
   "dependencies": {
     "@google/genai": "^0.7.0",
