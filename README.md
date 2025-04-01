@@ -9,6 +9,8 @@ A command-line interface (CLI) tool to interact seamlessly with various AI servi
 
 Engage in interactive chat sessions or get quick answers to single prompts without leaving your command line. `ai-shell` securely stores your preferences and API keys locally.
 
+![Screenshot](docs/screenshot.png)
+
 ## Installation
 
 Requires Node.js (v18 or later recommended).
