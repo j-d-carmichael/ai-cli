@@ -17,7 +17,7 @@
   - [2. Asking a Single Question](#2-asking-a-single-question)
   - [3. End a chat](#3-end-a-chat)
   - [4. Listing Services & Current Configuration](#4-listing-services--current-configuration)
-  - [5. Getting Help](#5-getting-help)
+  - [5. Getting Help & Listing All Commands](#5-getting-help--listing-all-commands)
 - [Configuration Storage](#configuration-storage)
 - [Contributing](#contributing)
 
