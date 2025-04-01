@@ -6,42 +6,43 @@ import Conf from 'conf';
 import chalk from 'chalk';
 import OpenAI from 'openai';
 import Anthropic from '@anthropic-ai/sdk';
+import { GoogleGenAI } from '@google/genai';
 import readline from 'readline';
+
+import { streamGoogleResponse } from './lib/streamGoogleResponse.js';
+import { streamOpenAIResponse } from './lib/streamOpenAIResponse.js';
+import { streamAnthropicResponse } from './lib/streamAnthropicResponse.js';
 
 // --- Configuration Setup ---
 const config = new Conf({ projectName: 'ais-cli' });
 const SUPPORTED_SERVICES = {
-  openai: 'OpenAI (GPT)',
   anthropic: 'Anthropic (Claude)',
+  google: 'Gemini (Google)',
+  openai: 'GPT (OpenAI)',
 };
 
 // --- Model Definitions (Add more as needed) ---
 const AVAILABLE_MODELS = {
-  openai: [
-    { name: 'GPT-4o Mini (Recommended, Cost-Effective)', value: 'gpt-4o-mini' },
-    { name: 'GPT-4o (Latest, Advanced)', value: 'gpt-4o' },
-    { name: 'GPT-4 Turbo', value: 'gpt-4-turbo' },
-    { name: 'GPT-3.5 Turbo', value: 'gpt-3.5-turbo' },
-  ],
   anthropic: [
     { name: 'Claude 3.5 Sonnet (Recommended, Latest)', value: 'claude-3-5-sonnet-20240620' },
     { name: 'Claude 3 Opus (Most Powerful)', value: 'claude-3-opus-20240229' },
     { name: 'Claude 3 Haiku (Fastest)', value: 'claude-3-haiku-20240307' },
   ],
+  google: [
+    { name: 'Gemini 2.5 Pro', value: 'gemini-2.5-pro-exp-03-25' },
+    { name: 'Gemini 2.0 Flash', value: 'models/gemini-2.0-flash' },
+  ],
+  openai: [
+    { name: 'GPT-4o Mini (Recommended, Cost-Effective)', value: 'gpt-4o-mini' },
+    { name: 'GPT-4o (Latest, Advanced)', value: 'gpt-4o' },
+    { name: 'GPT-4 Turbo', value: 'gpt-4-turbo' },
+    { name: 'GPT-3.5 Turbo', value: 'gpt-3.5-turbo' },
+  ]
 };
 
-// --- Commander Setup ---
-const program = new Command();
+const conversationHistory = [];
 
-program
-  .name('ais')
-  .description('Interact with AI services via the command line.')
-  .version('1.0.1') // Incremented version
-  .usage('[options | command] ["Your prompt here..."]');
-
-// --- Helper Functions ---
-
-async function handleSetConfiguration(exitAfter = false) {
+async function handleSetConfiguration (exitAfter = false) {
   console.log(chalk.blue('Configuring AI Service:'));
   try {
     // 1. Ask for Service
@@ -121,7 +122,7 @@ async function handleSetConfiguration(exitAfter = false) {
   }
 }
 
-async function getConfiguration(promptIfNotSet = false) {
+async function getConfiguration (promptIfNotSet = false) {
   let service = config.get('service');
   let model = config.get('model');
   let apiKey = config.get('apiKey');
@@ -159,7 +160,7 @@ async function getConfiguration(promptIfNotSet = false) {
   return { service, model, apiKey };
 }
 
-async function handleListConfiguration() {
+async function handleConfigurationShow () {
   const configData = await getConfiguration(false); // Don't prompt if not set
 
   if (configData) {
@@ -168,118 +169,58 @@ async function handleListConfiguration() {
     console.log(`  Service Provider: ${chalk.green(SUPPORTED_SERVICES[service] || service)}`);
     console.log(`  Model:            ${chalk.green(model)}`);
     console.log(`  Config Location:  ${chalk.dim(config.path)}`);
-    console.log(chalk.yellow('\nAPI Key is stored but not displayed. Use `ais set` to update it.'))
+    console.log(chalk.yellow('  API Key is stored but not displayed. Use `ais set` to update it.'));
+
   } else {
     console.log(chalk.yellow('No configuration found.'));
     console.log(`Run ${chalk.cyan('ais set')} to configure the service, model, and API key.`);
   }
+
+  process.exit();
 }
 
-
-// Pass modelId to the streaming functions
-async function streamOpenAIResponse(client, modelId, prompt, history = []) {
-  const messages = [
-    ...history,
-    { role: 'user', content: prompt },
-  ];
-
-  try {
-    const stream = await client.chat.completions.create({
-      model: modelId, // Use the passed model ID
-      messages: messages,
-      stream: true,
-    });
-
-    let fullResponse = '';
-    process.stdout.write(chalk.cyan('AI: '));
-    for await (const chunk of stream) {
-      const content = chunk.choices[0]?.delta?.content || '';
-      process.stdout.write(chalk.cyan(content));
-      fullResponse += content;
-    }
-    process.stdout.write('\n');
-    return fullResponse;
-  } catch (error) {
-    console.error(chalk.red(`\nError calling OpenAI API (Model: ${modelId}):`), error.message);
-    if (error.status === 401) {
-      console.error(chalk.yellow('Authentication error. Check your API key using `ais set`.'));
-    } else if (error.status === 429) {
-      console.error(chalk.yellow('Rate limit exceeded. Please wait and try again or check your plan.'));
-    } else if (error.status === 404) {
-      console.error(chalk.yellow(`Model not found: ${modelId}. Check the model name or your access permissions. Use 'ais set' to choose a different model.`));
-    }
-    return null;
+async function handleListConfiguration () {
+  console.log(chalk.blue('---- Available resources ---- '));
+  console.log('');
+  console.log(chalk.blue('Service providers:'));
+  for (const key in SUPPORTED_SERVICES) {
+    console.log(`  ${chalk.green(SUPPORTED_SERVICES[key])}`);
   }
-}
 
-// Pass modelId to the streaming functions
-async function streamAnthropicResponse(client, modelId, prompt, history = []) {
-  const messages = [
-    ...history,
-    { role: 'user', content: prompt },
-  ];
-
-  try {
-    const stream = client.messages.stream({
-      model: modelId, // Use the passed model ID
-      max_tokens: 1024, // Consider making this configurable later
-      messages: messages,
-    });
-
-    let fullResponse = '';
-    process.stdout.write(chalk.magenta('AI: '));
-
-    await new Promise((resolve, reject) => {
-      stream.on('text', (text) => {
-        process.stdout.write(chalk.magenta(text));
-        fullResponse += text;
-      });
-      stream.on('end', () => {
-        if (!fullResponse.endsWith('\n')) process.stdout.write('\n');
-        resolve();
-      });
-      stream.on('error', (error) => {
-        // Add newline if error occurs mid-stream for better formatting
-        if (!fullResponse.endsWith('\n')) process.stdout.write('\n');
-        reject(error)
-      });
-      // Handle specific Anthropic stop event for robustness
-      stream.on('message_stop', () => {
-        if (!fullResponse.endsWith('\n')) process.stdout.write('\n');
-        resolve();
-      });
-    });
-    return fullResponse;
-  } catch (error) {
-    console.error(chalk.red(`\nError calling Anthropic API (Model: ${modelId}):`), error.message);
-    if (error.status === 401) {
-      console.error(chalk.yellow('Authentication error. Check your API key using `ais set`.'));
-    } else if (error.status === 429) {
-      console.error(chalk.yellow('Rate limit exceeded. Please wait and try again or check your plan.'));
-    } else if (error.status === 404) {
-      console.error(chalk.yellow(`Model not found: ${modelId}. Check the model name or your access permissions. Use 'ais set' to choose a different model.`));
-    } else if (error.message.includes('Invalid')) { // Catch other potential model/parameter issues
-      console.error(chalk.yellow(`Invalid request parameter, potentially related to the model ${modelId}. Check API documentation or try 'ais set'.`));
+  console.log(chalk.blue('\nModels:'));
+  for (const key in AVAILABLE_MODELS) {
+    for (let i = 0; i < AVAILABLE_MODELS[key].length; i++) {
+      console.log(`  ${chalk.green(AVAILABLE_MODELS[key][i]['name'])}`);
     }
-    return null;
   }
+  console.log('');
+  console.log(chalk.blue.italic('(Please create an issue on GitHub to update this list of services or models)'));
+  console.log('');
+  console.log(chalk.blue('---- Available resources ---- '));
+  process.exit();
 }
 
 // --- Main Chat Logic Function ---
-async function runChat(initialPrompt = '') {
+async function runChat (initialPrompt = '') {
   // Prompt for configuration if not set, then retrieve it
   const configData = await getConfiguration(true);
   const { service, model, apiKey } = configData; // model is now included
 
   let aiClient;
   try {
-    if (service === 'openai') {
-      aiClient = new OpenAI({ apiKey });
-    } else if (service === 'anthropic') {
-      aiClient = new Anthropic({ apiKey });
-    } else {
-      console.error(chalk.red(`Invalid service configured: ${service}. Use \`ais set\`.`));
-      process.exit(1);
+    switch (service) {
+      case 'openai':
+        aiClient = new OpenAI({ apiKey });
+        break;
+      case 'anthropic':
+        aiClient = new Anthropic({ apiKey });
+        break;
+      case 'google':
+        aiClient = new GoogleGenAI({ apiKey });
+        break;
+      default:
+        console.error(chalk.red(`Invalid service configured: ${service}. Use \`ais set\`.`));
+        process.exit(1);
     }
   } catch (error) {
     console.error(chalk.red(`Error initializing AI client for ${SUPPORTED_SERVICES[service]}:`), error.message);
@@ -300,7 +241,7 @@ async function runChat(initialPrompt = '') {
   });
 
   // Function to process a single turn
-  async function processTurn(input) {
+  async function processTurn (input) {
     if (!input?.trim()) {
       rl.prompt();
       return;
@@ -308,29 +249,35 @@ async function runChat(initialPrompt = '') {
 
     let response = null;
     try {
-      if (service === 'openai') {
-        // Pass the configured model ID to the stream function
-        response = await streamOpenAIResponse(aiClient, model, input /*, conversationHistory */);
-      } else if (service === 'anthropic') {
-        // Pass the configured model ID to the stream function
-        response = await streamAnthropicResponse(aiClient, model, input /*, conversationHistory */);
+      switch (service) {
+        case 'openai':
+          // Pass the configured model ID to the stream function
+          response = await streamOpenAIResponse(aiClient, model, input, conversationHistory);
+          break;
+        case 'anthropic':
+          // Pass the configured model ID to the stream function
+          response = await streamAnthropicResponse(aiClient, model, input, conversationHistory);
+          break;
+        case 'google':
+          response = await streamGoogleResponse(aiClient, model, input, conversationHistory);
       }
     } catch (turnError) {
-      console.error(chalk.red("\nAn unexpected error occurred during processing:"), turnError.message);
+      console.error(chalk.red('\nAn unexpected error occurred during processing:'), turnError.message);
       response = null;
     }
 
     if (response === null) {
-      console.log(chalk.red("Attempting to continue session. Enter your next prompt or Ctrl+C to exit."))
+      console.log(chalk.red('Attempting to continue session. Enter your next prompt or Ctrl+C to exit.'));
     }
 
-    // --- History Management (Placeholder) ---
-    // let conversationHistory = [];
-    // conversationHistory.push({ role: 'user', content: input });
-    // if (response) { conversationHistory.push({ role: 'assistant', content: response }); }
-    // ----------------------------------------------------
+    // Add to the running thread
+    conversationHistory.push({ role: 'user', content: input });
+    if (response) {
+      conversationHistory.push({ role: 'assistant', content: response });
+    }
 
-    rl.prompt(); // Show prompt for next input
+    // Show prompt for next input
+    rl.prompt();
   }
 
   // --- Start the Chat ---
@@ -348,33 +295,35 @@ async function runChat(initialPrompt = '') {
   });
 }
 
-
-// --- Commander Command Definitions ---
-
+// --- Commander Setup & Command Definitions ---
+const program = new Command();
+program
+  .name('ais')
+  .description('Interact with AI services via the command line.')
+  .version('1.0.1') // Incremented version
+  .usage('[options | command] ["Your prompt here..."]');
 program
   .command('set')
   .description('Set/update the AI service, model, and API key')
-  .action(() => handleSetConfiguration(true)); // Exit after setting
-
+  .action(() => handleSetConfiguration(true));
+program
+  .command('config')
+  .description('List the current AI configuration (service and model)')
+  .action(handleConfigurationShow);
 program
   .command('list')
-  .alias('ls') // Add a shorter alias
-  .description('List the current AI configuration (service and model)')
-  .action(handleListConfiguration); // Call the new list handler
-
+  .alias('ls')
+  .description('List all available AI configurations (service and model)')
+  .action(handleListConfiguration);
 program
   // Make the prompt argument optional and capture any remaining args for the default action
   .argument('[prompt...]', 'The prompt to send to the AI (leave empty for interactive chat)')
-  .action(async (promptArgs, options, command) => {
-    // Check if a specific command ('set', 'list') was already handled
-    // Commander's `.command()` handles this implicitly now,
-    // so this action only runs if NO specific command was matched.
+  .action(async (promptArgs) => {
     const initialPrompt = promptArgs.join(' ').trim();
-    await runChat(initialPrompt); // Run main chat logic
+    await runChat(initialPrompt);
   });
 
-
-// --- Parse Arguments and Run ---
+// Starting engines
 (async () => {
   try {
     await program.parseAsync(process.argv);
@@ -386,7 +335,6 @@ program
     // Explicit check might not be needed with modern Commander versions unless specific edge cases arise.
 
   } catch (error) {
-    // Catch potential errors during command parsing or execution if not handled elsewhere
     console.error(chalk.red('An error occurred:'), error.message);
     process.exit(1);
   }
