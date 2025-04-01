@@ -5,11 +5,13 @@
 <!-- [![Downloads](https://img.shields.io/npm/dm/ai-shell.svg)](https://www.npmjs.com/package/ai-shell) -->
 <!-- Optional: Add downloads badge after publishing -->
 
-A command-line interface (CLI) tool to interact seamlessly with various AI services like OpenAI (GPT) and Anthropic (Claude) directly from your terminal.
+A command-line interface (CLI) tool to interact seamlessly with various AI services like Google (Gemini), OpenAI (GPT) and Anthropic (Claude) directly from your terminal.
 
-Engage in interactive chat sessions or get quick answers to single prompts without leaving your command line. `ai-shell` securely stores your preferences and API keys locally.
+For those who feel cursor or co-pilot etc is not for them but loading a whole web-gui is too slow... fire up a terminal in your ide, or wherever, and get right to it.
 
 ![Screenshot](docs/screenshot.png)
+
+Engage in interactive chat sessions or get quick answers to single prompts without leaving your command line. `ai-shell` securely stores your preferences and API keys locally.
 
 ## Installation
 
