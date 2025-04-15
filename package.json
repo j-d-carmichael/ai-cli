@@ -1,5 +1,5 @@
 {
-  "version": "1.3.0",
+  "version": "1.4.0",
   "type": "module",
   "name": "ai-shell",
   "description": "A CLI tool to chat with different AI models from your terminal (eg in vscode) from anthropic, google and openai.",

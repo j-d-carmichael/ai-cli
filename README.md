@@ -13,12 +13,12 @@
 
 - [Installation](#installation)
 - [Usage](#usage)
-    - [1. Configuration (First Time or Updating)](#1-configuration-first-time-or-updating)
-        - [Setting a system prompt](#setting-a-system-prompt)
-    - [2. Asking a Single Question](#2-asking-a-single-question)
-    - [3. End a chat](#3-end-a-chat)
-    - [4. Listing Services & Current Configuration](#4-listing-services--current-configuration)
-    - [5. Getting Help & Listing All Commands](#5-getting-help--listing-all-commands)
+  - [1. Configuration (First Time or Updating)](#1-configuration-first-time-or-updating)
+    - [Setting a system prompt](#setting-a-system-prompt)
+  - [2. Asking a Single Question](#2-asking-a-single-question)
+  - [3. End a chat](#3-end-a-chat)
+  - [4. Listing Services & Current Configuration](#4-listing-services--current-configuration)
+  - [5. Getting Help & Listing All Commands](#5-getting-help--listing-all-commands)
 - [Configuration Storage](#configuration-storage)
 - [Contributing](#contributing)
 
