@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.4.1/2/3
+
+- docs: comments and readme tweaks 
+- fix: dynamic version number from package json file
+
 ## 1.4.0
 
 - Multiline input is now possible, if you do not enter a single line prompt and instead just press enter, your systems

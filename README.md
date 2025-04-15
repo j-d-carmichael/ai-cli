@@ -15,7 +15,8 @@
 - [Usage](#usage)
   - [1. Configuration (First Time or Updating)](#1-configuration-first-time-or-updating)
     - [Setting a system prompt](#setting-a-system-prompt)
-  - [2. Asking a Single Question](#2-asking-a-single-question)
+  - [2. Asking Questions](#2-asking-questions)
+    - [Long prompt input](#long-prompt-input)
   - [3. End a chat](#3-end-a-chat)
   - [4. Listing Services & Current Configuration](#4-listing-services--current-configuration)
   - [5. Getting Help & Listing All Commands](#5-getting-help--listing-all-commands)
@@ -94,7 +95,7 @@ ais sp
 
 This will replace the current system prompt with your input.
 
-### 2. Asking a Single Question
+### 2. Asking Questions
 
 Pass your prompt directly as arguments after the ais command:
 
@@ -102,7 +103,17 @@ Pass your prompt directly as arguments after the ais command:
 ais "Explain the difference between HTTP and HTTPS in simple terms"
 ```
 
-The AI's response will be streamed directly to your terminal leaving you to continue talking to the model.
+The AI's response will be streamed directly to your terminal leaving you to continue talking to the model. You can then
+continue the conversation by continuing to type.
+
+#### Long prompt input
+
+Longer prompts with line breaks are usually required at some point. To handle this the tool (on linux) will open the
+default editor (it will default to nano when `process.env.EDITOR` is not set).
+
+This all functions by 1st creating a temporary file in the OS tmp folder, opens the file thus allowing you to write to
+it. After you save the changes and close the file, `ai-shell` grabs the content and uses it as the prompt while at the
+same time removing the tmp file form disk.
 
 ### 3. End a chat
 

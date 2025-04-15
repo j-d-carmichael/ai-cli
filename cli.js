@@ -1,16 +1,23 @@
 #!/usr/bin/env node
-
-import { Command } from 'commander';
+import { readFileSync } from 'fs';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
 import chalk from 'chalk';
+import { Command } from 'commander';
+import Conf from 'conf';
+
 import { handleSetConfiguration } from './lib/handleSetConfiguration.js';
 import { handleConfigurationShow } from './lib/handleConfigurationShow.js';
 import { handleListConfiguration } from './lib/handleListConfiguration.js';
 import { runChat } from './lib/runChat.js';
-
-import Conf from 'conf';
 import { clearConfig } from './lib/clearConfig.js';
 import { handleSetSystemPrompt } from './lib/handleSetSystemPrompt.js';
 import { getPromptFromEditor } from './lib/getPromptFromEditor.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const packageJsonPath = join(__dirname, 'package.json');
+const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf-8'));
 
 const config = new Conf({ projectName: 'ais-cli' });
 
@@ -19,7 +26,7 @@ const program = new Command();
 program
   .name('ais')
   .description('Interact with AI services via the command line.')
-  .version('1.0.1') // Incremented version
+  .version(packageJson.version)
   .usage('[options | command] ["Your prompt here..."]');
 
 program
@@ -51,7 +58,10 @@ program
   .action(() => handleListConfiguration(config));
 
 program
-  .argument('[prompt...]', 'The prompt to send to the AI (leave empty for interactive chat, it will open your default cli text editor)')
+  .argument(
+    '[prompt...]',
+    'The prompt to send to the AI (leave empty for interactive chat, it will open your default cli text editor)'
+  )
   .action(async (promptArgs) => {
     let initialPrompt = promptArgs.join(' ').trim();
 
