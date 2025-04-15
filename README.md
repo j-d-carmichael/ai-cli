@@ -13,56 +13,70 @@
 
 - [Installation](#installation)
 - [Usage](#usage)
-  - [1. Configuration (First Time or Updating)](#1-configuration-first-time-or-updating)
-    - [Setting a system prompt](#setting-a-system-prompt)
-  - [2. Asking a Single Question](#2-asking-a-single-question)
-  - [3. End a chat](#3-end-a-chat)
-  - [4. Listing Services & Current Configuration](#4-listing-services--current-configuration)
-  - [5. Getting Help & Listing All Commands](#5-getting-help--listing-all-commands)
+    - [1. Configuration (First Time or Updating)](#1-configuration-first-time-or-updating)
+        - [Setting a system prompt](#setting-a-system-prompt)
+    - [2. Asking a Single Question](#2-asking-a-single-question)
+    - [3. End a chat](#3-end-a-chat)
+    - [4. Listing Services & Current Configuration](#4-listing-services--current-configuration)
+    - [5. Getting Help & Listing All Commands](#5-getting-help--listing-all-commands)
 - [Configuration Storage](#configuration-storage)
 - [Contributing](#contributing)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-A command-line interface (CLI) tool to interact seamlessly with various AI services like Google (Gemini), OpenAI (GPT) and Anthropic (Claude) directly from your terminal.
+A command-line interface (CLI) tool to interact seamlessly with various AI services like Google (Gemini), OpenAI (GPT)
+and Anthropic (Claude) directly from your terminal.
 
-For those who feel cursor or co-pilot etc is not for them but loading a whole web-gui is too slow... fire up a terminal in your ide, or wherever, and get right to it.
+For those who feel cursor or co-pilot etc is not for them but loading a whole web-gui is too slow... fire up a terminal
+in your ide, or wherever, and get right to it.
 
-The AI then becomes more like your teacher opposed to cursor or co-pilot being the coder... 
+The AI then becomes more like your teacher opposed to cursor or co-pilot being the coder...
 
-Engage in interactive chat sessions or get quick answers to single prompts without leaving your command line. `ai-shell` securely stores your preferences and API keys locally.
+Engage in interactive chat sessions or get quick answers to single prompts without leaving your command line. `ai-shell`
+securely stores your preferences and API keys locally.
+
+The tool will automatically open your default cli text editor for longer prompts, just call the tool `ais` and press
+enter without a single line prompt.
 
 ## Installation
 
 Requires Node.js (v18 or later recommended).
 
 Install the package globally using npm:
+
 ```bash
 npm install -g ai-shell
 ```
 
 ## Usage
+
 ### 1. Configuration (First Time or Updating)
 
 (you can just ask a question and as nothing will be set already it will then ask for which model and keys)
 
 Before using `ais`, you need to configure your preferred AI service, model, and API key. Run:
+
 ```bash
 ais set
 ```
 
 This interactive command will guide you through:
+
 - Selecting an AI service provider (OpenAI or Anthropic).
 - Choosing a specific model available for that service (e.g., gpt-4o-mini, claude-3-5-sonnet).
 - Entering your API key for the selected service (input will be masked).
 
-Your configuration is saved locally for future use. 
+Your configuration is saved locally for future use.
+
 - You can run ais set again anytime to change your settings.
-- API keys (service keys) are stored in the local config, when jumping between models this speeds up the process by removing the need to copy and paste in the api key more than once.
-- When `set` is called and a service picked, but not previously used (ie no api key found), it will ask for an API key and add to the dict of keys
+- API keys (service keys) are stored in the local config, when jumping between models this speeds up the process by
+  removing the need to copy and paste in the api key more than once.
+- When `set` is called and a service picked, but not previously used (ie no api key found), it will ask for an API key
+  and add to the dict of keys
 
 #### Setting a system prompt
+
 A default system prompt is set as:
 
 _"You should be concise and as accurate as possible in your output. As few a niceties as possible. This is a
@@ -70,6 +84,7 @@ developer you are talking to, they want rapid fast answers and on point. If need
 question more accurate and less obtuse to enable you to provide a very on point answer."_
 
 You can override this by calling the set system prompt command:
+
 ```bash
 ais set-system-prompt
 
@@ -79,9 +94,10 @@ ais sp
 
 This will replace the current system prompt with your input.
 
-
 ### 2. Asking a Single Question
+
 Pass your prompt directly as arguments after the ais command:
+
 ```bash
 ais "Explain the difference between HTTP and HTTPS in simple terms"
 ```
@@ -93,13 +109,16 @@ The AI's response will be streamed directly to your terminal leaving you to cont
 To end the chat just press "control + c"
 
 ### 4. Listing Services & Current Configuration
+
 To see which service and model are currently configured.
 This will display the active service provider and model identifier. It will not display your API key.
+
 ```bash
 ais config
 ```
 
 To see the available models you can currently talk to:
+
 ```bash
 ais list
 # or the alias:
@@ -115,12 +134,15 @@ ais --help
 ```
 
 ## Configuration Storage
-Configuration (service, model, API key) is stored locally using the conf package. You can typically find the configuration file at:
+
+Configuration (service, model, API key) is stored locally using the conf package. You can typically find the
+configuration file at:
 
 - Linux: `~/.config/ais-cli-nodejs/config.json`
 - macOS: `~/Library/Preferences/ais-cli-nodejs/config.json`
 - Windows: `%APPDATA%\ais-cli-nodejs\Config\config.json`
 
 ## Contributing
+
 Contributions, issues, and feature requests are welcome! 
 

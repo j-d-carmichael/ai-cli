@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 1.4.0
+
+- Multiline input is now possible, if you do not enter a single line prompt and instead just press enter, your systems
+  default editor opens. The contents of which upon saving are passed as the prompt. This allows for much bigger prompts
+  to be sent.
+- Custom model selection; by default you can pick from the popular models from google, anthropic and openai, but you can
+  now also test other models by selecting "other" and typing the model name in manually.
+
 ## 1.3.0
 
 - Added the option to set a system prompt

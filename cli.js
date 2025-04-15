@@ -10,6 +10,8 @@ import { runChat } from './lib/runChat.js';
 import Conf from 'conf';
 import { clearConfig } from './lib/clearConfig.js';
 import { handleSetSystemPrompt } from './lib/handleSetSystemPrompt.js';
+import { getPromptFromEditor } from './lib/getPromptFromEditor.js';
+
 const config = new Conf({ projectName: 'ais-cli' });
 
 // --- Commander Setup & Command Definitions ---
@@ -49,9 +51,32 @@ program
   .action(() => handleListConfiguration(config));
 
 program
-  .argument('[prompt...]', 'The prompt to send to the AI (leave empty for interactive chat)')
+  .argument('[prompt...]', 'The prompt to send to the AI (leave empty for interactive chat, it will open your default cli text editor)')
   .action(async (promptArgs) => {
-    const initialPrompt = promptArgs.join(' ').trim();
+    let initialPrompt = promptArgs.join(' ').trim();
+
+    // If no prompt was provided via command line arguments...
+    if (!initialPrompt) {
+      try {
+        initialPrompt = await getPromptFromEditor();
+
+        if (!initialPrompt) {
+          console.log(chalk.yellow('No prompt entered in the editor. Exiting.'));
+          process.exit(0);
+        }
+        // Add a little visual separator
+        console.log(chalk.blue('---'));
+
+      } catch (error) {
+        // Editor error
+        console.error(chalk.red(`Error during editor session: ${error.message}`));
+
+        // Fall back to interactive mode without an initial prompt:
+        console.warn(chalk.yellow('Falling back to interactive mode without an initial prompt.'));
+        initialPrompt = '';
+      }
+    }
+
     await runChat(config, initialPrompt);
   });
 
