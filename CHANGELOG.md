@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.5.0
+- The system prompt editor now also uses the text editor making multi line input easy
+
 ## 1.4.1/2/3
 
 - docs: comments and readme tweaks 
