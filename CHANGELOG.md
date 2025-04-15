@@ -1,11 +1,17 @@
 # CHANGELOG
 
+## 1.6.0
+
+- Option --verbose or for short -v added which logs to the console the full payload sent to the AI service. This is
+  helpful to see the full chat thread complete with system prompt.
+
 ## 1.5.0
+
 - The system prompt editor now also uses the text editor making multi line input easy
 
 ## 1.4.1/2/3
 
-- docs: comments and readme tweaks 
+- docs: comments and readme tweaks
 - fix: dynamic version number from package json file
 
 ## 1.4.0

@@ -1,6 +1,8 @@
 # AI-Shell (ais)
 
-![Screenshot](docs/screenshot.png)
+
+<img src="./docs/ai-shell-logo.webp" alt="AI-Shell Logo" style="max-height:250px;" />
+
 
 [![npm version](https://badge.fury.io/js/ai-shell.svg)](https://badge.fury.io/js/ai-shell)
 [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
@@ -37,8 +39,9 @@ The AI then becomes more like your teacher opposed to cursor or co-pilot being t
 Engage in interactive chat sessions or get quick answers to single prompts without leaving your command line. `ai-shell`
 securely stores your preferences and API keys locally.
 
-The tool will automatically open your default cli text editor for longer prompts, just call the tool `ais` and press
-enter without a single line prompt.
+Opens your default text editor for long/multi-lined prompts.
+
+![Screenshot](docs/screenshot.png)
 
 ## Installation
 

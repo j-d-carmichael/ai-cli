@@ -13,6 +13,7 @@ import { runChat } from './lib/runChat.js';
 import { clearConfig } from './lib/clearConfig.js';
 import { handleSetSystemPrompt } from './lib/handleSetSystemPrompt.js';
 import { getPromptFromEditor } from './lib/getPromptFromEditor.js';
+import { VerboseLogger } from './lib/VerboseLogger.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -28,6 +29,14 @@ program
   .description('Interact with AI services via the command line.')
   .version(packageJson.version)
   .usage('[options | command] ["Your prompt here..."]');
+
+program
+  .option('-v, --verbose', 'Enable verbose output');
+
+program.hook('preAction', (thisCommand) => {
+  const opts = thisCommand.opts?.() || {};
+  VerboseLogger.setIsVerbose(opts.verbose || false);
+});
 
 program
   .command('set')
