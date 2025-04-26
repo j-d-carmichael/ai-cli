@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.7.0
+
+- feat: The output from the AI is parsed through marked-terminal which highlights markdown syntax, this makes reading
+  the terminal output much easier.
+- fix: Google AI provider error resolved
+
 ## 1.6.0
 
 - Option --verbose or for short -v added which logs to the console the full payload sent to the AI service. This is

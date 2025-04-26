@@ -80,18 +80,18 @@ program
         initialPrompt = await getPromptFromEditor();
 
         if (!initialPrompt) {
-          console.log(chalk.yellow('No prompt entered in the editor. Exiting.'));
+          logger.log(chalk.yellow('No prompt entered in the editor. Exiting.'));
           process.exit(0);
         }
         // Add a little visual separator
-        console.log(chalk.blue('---'));
+        logger.log(chalk.blue('---'));
 
       } catch (error) {
         // Editor error
-        console.error(chalk.red(`Error during editor session: ${error.message}`));
+        logger.error(chalk.red(`Error during editor session: ${error.message}`));
 
         // Fall back to interactive mode without an initial prompt:
-        console.warn(chalk.yellow('Falling back to interactive mode without an initial prompt.'));
+        logger.warn(chalk.yellow('Falling back to interactive mode without an initial prompt.'));
         initialPrompt = '';
       }
     }
@@ -104,7 +104,7 @@ program
   try {
     await program.parseAsync(process.argv);
   } catch (error) {
-    console.error(chalk.red('An error occurred:'), error.message);
+    logger.error(chalk.red('An error occurred:'), error.message);
     process.exit(1);
   }
 })();

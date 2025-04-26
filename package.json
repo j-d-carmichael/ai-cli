@@ -1,5 +1,5 @@
 {
-  "version": "1.6.0",
+  "version": "1.7.0",
   "type": "module",
   "name": "ai-shell",
   "description": "A CLI tool to chat with different AI models from your terminal (eg in vscode) from anthropic, google and openai.",
@@ -26,16 +26,18 @@
     "ais": "./cli.js"
   },
   "scripts": {
-    "doctoc":"npx doctoc ./README.md",
+    "doctoc": "npx doctoc ./README.md",
     "prepublishOnly": "npm run doctoc"
   },
   "dependencies": {
-    "@google/genai": "^0.8.0",
-    "@anthropic-ai/sdk": "^0.39.0",
+    "@anthropic-ai/sdk": "^0.40.0",
+    "@google/genai": "^0.10.0",
     "chalk": "^5.4.1",
     "commander": "^13.1.0",
     "conf": "^13.1.0",
-    "inquirer": "^12.5.0",
-    "openai": "^4.94.0"
+    "inquirer": "^12.6.0",
+    "marked": "^15.0.11",
+    "marked-terminal": "^7.3.0",
+    "openai": "^4.96.0"
   }
 }
