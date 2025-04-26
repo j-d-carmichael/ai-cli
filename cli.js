@@ -5,6 +5,7 @@ import { fileURLToPath } from 'url';
 import chalk from 'chalk';
 import { Command } from 'commander';
 import Conf from 'conf';
+import { logger } from './lib/logger.js';
 
 import { handleSetConfiguration } from './lib/handleSetConfiguration.js';
 import { handleConfigurationShow } from './lib/handleConfigurationShow.js';
@@ -14,6 +15,7 @@ import { clearConfig } from './lib/clearConfig.js';
 import { handleSetSystemPrompt } from './lib/handleSetSystemPrompt.js';
 import { getPromptFromEditor } from './lib/getPromptFromEditor.js';
 import { VerboseLogger } from './lib/VerboseLogger.js';
+import { checkForUpdate } from './lib/versionCheck.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -72,6 +74,8 @@ program
     'The prompt to send to the AI (leave empty for interactive chat, it will open your default cli text editor)'
   )
   .action(async (promptArgs) => {
+    await checkForUpdate();
+
     let initialPrompt = promptArgs.join(' ').trim();
 
     // If no prompt was provided via command line arguments...
